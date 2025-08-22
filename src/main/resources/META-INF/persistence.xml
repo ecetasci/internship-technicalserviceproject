@@ -1,0 +1,26 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+
+    <persistence-unit name="pu_jpa">
+        <class>com.ecetasci.entity.Customer</class>
+        <class>com.ecetasci.entity.Device</class>
+        <class>com.ecetasci.entity.ServiceLog</class>
+        <class>com.ecetasci.entity.Technician</class>
+        <class>com.ecetasci.entity.Status</class>
+        <properties>
+            <!-- Database connection settings -->
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/service_db"/>
+            <property name="jakarta.persistence.jdbc.user" value="postgres"/>
+            <property name="jakarta.persistence.jdbc.password" value="root"/>
+            <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+
+            <!-- Echo all executed SQL to console -->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="false"/>
+            <property name="hibernate.highlight_sql" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+        </properties>
+    </persistence-unit>
+</persistence>
