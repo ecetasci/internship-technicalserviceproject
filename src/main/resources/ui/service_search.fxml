@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.ecetasci.ui.ServiceSearchController">
+    <top>
+        <VBox spacing="8" BorderPane.alignment="CENTER">
+            <children>
+                <HBox spacing="8" alignment="CENTER_LEFT" style="-fx-padding: 12;">
+                    <children>
+                        <Label text="Telefon:"/>
+                        <TextField fx:id="phoneField" promptText="05xx..." HBox.hgrow="ALWAYS"/>
+                        <Button text="Ara" onAction="#onSearch"/>
+                    </children>
+                </HBox>
+                <HBox spacing="24" alignment="CENTER_LEFT" style="-fx-padding: 0 12 12 12;">
+                    <children>
+                        <Text text="Müşteri:" style="-fx-font-weight: bold;"/>
+                        <Label fx:id="lblCustomerName" text="-"/>
+                        <Separator orientation="VERTICAL"/>
+                        <Text text="Telefon:" style="-fx-font-weight: bold;"/>
+                        <Label fx:id="lblCustomerPhone" text="-"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="lblInfo" text=""/>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </top>
+    <center>
+        <TableView fx:id="table">
+            <columns>
+                <TableColumn fx:id="colId" text="#" prefWidth="60"/>
+                <TableColumn fx:id="colDevice" text="Cihaz" prefWidth="200"/>
+                <TableColumn fx:id="colStatus" text="Durum" prefWidth="140"/>
+                <TableColumn fx:id="colEntry" text="Giriş" prefWidth="160"/>
+                <TableColumn fx:id="colExit" text="Çıkış" prefWidth="160"/>
+                <TableColumn fx:id="colDuration" text="Süre" prefWidth="120"/>
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>

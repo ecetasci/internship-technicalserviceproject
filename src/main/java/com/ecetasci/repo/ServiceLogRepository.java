@@ -5,7 +5,7 @@ import com.ecetasci.entity.ServiceLog;
 import java.util.List;
 import java.util.Optional;
 
-public class ServiceLogRepository extends RepositoryManager<ServiceLog,Integer> {
+public class ServiceLogRepository extends RepositoryManager<ServiceLog, Integer> {
     public ServiceLogRepository() {
         super();
     }
@@ -43,5 +43,23 @@ public class ServiceLogRepository extends RepositoryManager<ServiceLog,Integer> 
     @Override
     public boolean existsById(Integer integer) {
         return super.existsById(integer);
+    }
+
+
+    public List<ServiceLog> findByCustomerId(String phone) {
+        CustomerRepository customerRepository = new CustomerRepository();
+
+        Integer customerId = customerRepository
+                .findCustomerIdByPhone(phone);
+
+        if (customerId == null) {
+            return java.util.Collections.emptyList();
+        }
+
+        List<ServiceLog> serviceLogList = em.createQuery("select s from ServiceLog s WHERE s.customer.id= :customerId", ServiceLog.class)
+                .setParameter("customerId", customerId).getResultList();
+        return serviceLogList;
+
+
     }
 }

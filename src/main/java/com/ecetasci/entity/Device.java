@@ -27,6 +27,22 @@ public class Device {
         this.serialNo = serialNo;
     }
 
+    public Device() {
+
+    }
+
+    @Override
+    public String toString() {
+        return "Device{" +
+                "id=" + id +
+                ", customer=" + customer +
+                ", brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", serialNo='" + serialNo + '\'' +
+                ", notes='" + notes + '\'' +
+                '}';
+    }
+
     // --- Getters & Setters ---
     public Integer getId() {
         return id;

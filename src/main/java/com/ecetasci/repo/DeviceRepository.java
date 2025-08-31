@@ -51,7 +51,7 @@ public class DeviceRepository extends RepositoryManager<Device, Integer> {
 
     public List<Device> findDeviceByCustomerPhone(String customerPhone) {
 
-        Optional<Integer> customerIdByPhone = customerRepository.findCustomerIdByPhone(customerPhone);
+        Optional<Integer> customerIdByPhone = customerRepository.findCustomerIdByPhone(customerPhone).describeConstable();
 
         return customerIdByPhone.map(customerId -> em.createQuery("SELECT d From Device d WHERE d.customer.id=: customerId", Device.class)
                 .setParameter("customerId", customerId)

@@ -13,7 +13,7 @@ public class Technician {
     @Column(name = "first_name", length = 50, nullable = false)
     private String firstName;
 
-    @Column(name = "last_name", length = 50, nullable = false)
+    @Column
     private String lastName;
 
 
@@ -23,6 +23,15 @@ public class Technician {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Technician{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
     }
 
     public String getFirstName() {
@@ -40,5 +49,7 @@ public class Technician {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+
 }
 

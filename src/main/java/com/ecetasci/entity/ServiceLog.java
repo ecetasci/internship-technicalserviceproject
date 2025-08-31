@@ -1,7 +1,10 @@
 package com.ecetasci.entity;
 
+import com.ecetasci.util.ServiceTimeUtil;
 import jakarta.persistence.*;
 
+import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -35,12 +38,29 @@ public class ServiceLog {
     @Column(name = "delivery_date")
     private LocalDateTime deliveryDate;
 
-    @OneToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id", nullable = false)
+    // ServiceLog.java
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "customer_id", nullable = false) // service_log.customer_id
     private Customer customer;
+
 
     public Customer getCustomer() {
         return customer;
+    }
+
+    @Override
+    public String toString() {
+        return "ServiceLog{" +
+                "id=" + id +
+                ", device=" + device +
+                ", technician=" + technician +
+                ", complaint='" + complaint + '\'' +
+                ", status=" + status +
+                ", entryDate=" + entryDate +
+                ", estimatedDelivery=" + estimatedDelivery +
+                ", deliveryDate=" + deliveryDate +
+                ", customer=" + customer +
+                '}';
     }
 
     public void setCustomer(Customer customer) {
@@ -59,6 +79,16 @@ public class ServiceLog {
         return device;
     }
 
+    public String getDeviceName(){
+          return device!=null ? device.getModel() : "model girilmemiştir";
+    }
+
+    public String getDurationText() {
+        if (entryDate == null) return "-";
+        Duration d = Duration.between(entryDate, LocalDate.now());
+        return "a";
+       // return ServiceTimeUtil.formatDuration(d);
+    }
     public void setDevice(Device device) {
         this.device = device;
     }

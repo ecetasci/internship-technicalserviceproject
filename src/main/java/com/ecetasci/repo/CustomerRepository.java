@@ -70,17 +70,18 @@ public class CustomerRepository extends RepositoryManager<Customer, Integer> {
         return list.isEmpty() ? Optional.empty() : Optional.of(list.get(0));
     }
 
-    public Optional<Integer> findCustomerIdByPhone(String customerPhone) {
-
-        List<Integer> resultList = em.createQuery(
+    public Integer findCustomerIdByPhone(String customerPhone) {
+        var ids = em.createQuery(
                         "select c.id from Customer c " +
-                                "where lower(c.phone) = lower(:customerPhone)", Integer.class)
-                .setParameter("customerPhone", customerPhone)
-                .getResultList();
-        return resultList.stream().findAny();
+                                "where lower(trim(c.phone)) = lower(trim(:phone))", Integer.class)
+                .setParameter("phone", customerPhone)
+                .getResultList();                 // <-- sonuçları gerçekten getir
 
+        return ids.isEmpty() ? null : ids.get(0);
     }
 
-
 }
+
+
+
 
